@@ -1,0 +1,445 @@
+/* =========================================
+   GLOBAL VARIABLES & THEME
+   ========================================= */
+:root {
+  --primary: #6366f1;
+  /* Indigo utama */
+  --primary-glow: rgba(99, 102, 241, 0.6);
+  --secondary: #a855f7;
+  /* Ungu aksen */
+  --bg-dark: #020617;
+  /* Latar belakang paling gelap */
+  --card-bg: rgba(30, 41, 59, 0.4);
+  /* Transparan untuk kartu */
+  --text-gray: #cbd5e1;
+  --white: #ffffff;
+}
+
+/* =========================================
+   RESET & LAYOUT UTAMA
+   ========================================= */
+* {
+  box-sizing: border-box;
+}
+
+.app {
+  min-height: 100vh;
+  background-color: var(--bg-dark);
+  /* Background dinamis dengan gradient samar */
+  background-image:
+    radial-gradient(circle at 15% 50%, rgba(99, 102, 241, 0.15), transparent 25%),
+    radial-gradient(circle at 85% 30%, rgba(168, 85, 247, 0.15), transparent 25%);
+  font-family: 'Inter', system-ui, sans-serif;
+  overflow-x: hidden;
+  color: var(--white);
+}
+
+.main {
+  max-width: 1200px;
+  margin: auto;
+  padding: 0 24px;
+  min-height: 80vh;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* =========================================
+   NAVBAR (GLASSMORPHISM)
+   ========================================= */
+.navbar {
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(2, 6, 23, 0.7);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  margin-bottom: 40px;
+  padding: 0 24px;
+}
+
+.logo {
+  font-size: 1.6rem;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: linear-gradient(135deg, #fff 30%, #a5b4fc 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 0 20px rgba(99, 102, 241, 0.3));
+}
+
+.promo {
+  font-weight: 700;
+  background: linear-gradient(90deg, rgba(99, 102, 241, 0.2), rgba(168, 85, 247, 0.2));
+  color: #c4b5fd;
+  padding: 8px 20px;
+  border-radius: 50px;
+  font-size: 0.85rem;
+  border: 1px solid rgba(168, 85, 247, 0.3);
+  box-shadow: 0 0 15px rgba(168, 85, 247, 0.2);
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.promo:hover {
+  box-shadow: 0 0 25px rgba(168, 85, 247, 0.5);
+  transform: scale(1.05);
+  border-color: var(--secondary);
+}
+
+/* =========================================
+   HERO SECTION (HOME)
+   ========================================= */
+.hero {
+  text-align: center;
+  padding: 60px 0 50px;
+  animation: fadeInDown 0.8s ease-out;
+}
+
+.hero h1 {
+  font-size: 3.5rem;
+  font-weight: 900;
+  line-height: 1.1;
+  margin-bottom: 20px;
+  letter-spacing: -1px;
+}
+
+.hero span {
+  background: linear-gradient(to right, #818cf8, #d8b4fe);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 30px rgba(139, 92, 246, 0.3);
+}
+
+.hero p {
+  color: var(--text-gray);
+  margin-bottom: 40px;
+  font-size: 1.1rem;
+}
+
+/* Search Box */
+.search-box {
+  max-width: 550px;
+  margin: 0 auto 60px;
+  position: relative;
+}
+
+.search-input {
+  width: 100%;
+  padding: 18px 30px;
+  border-radius: 50px;
+  background: rgba(30, 41, 59, 0.7);
+  border: 2px solid rgba(255, 255, 255, 0.05);
+  color: white;
+  font-size: 1.05rem;
+  outline: none;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(10px);
+}
+
+.search-input::placeholder {
+  color: #64748b;
+}
+
+.search-input:focus {
+  border-color: var(--primary);
+  background: rgba(15, 23, 42, 0.9);
+  box-shadow: 0 0 25px rgba(99, 102, 241, 0.3), inset 0 0 10px rgba(99, 102, 241, 0.1);
+  transform: scale(1.02);
+}
+
+/* =========================================
+   GAME GRID (HOME)
+   ========================================= */
+.game-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 30px;
+  padding-bottom: 80px;
+}
+
+.game-card {
+  position: relative;
+  border-radius: 24px;
+  overflow: hidden;
+  background: var(--card-bg);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  cursor: pointer;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.game-card:hover {
+  transform: translateY(-12px) scale(1.02);
+  border-color: var(--primary);
+  box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.5),
+    0 0 20px rgba(99, 102, 241, 0.4);
+  z-index: 2;
+}
+
+.game-card img {
+  width: 100%;
+  aspect-ratio: 3/4;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+  filter: brightness(0.9);
+}
+
+.game-card:hover img {
+  transform: scale(1.1);
+  filter: brightness(1.1);
+}
+
+/* Overlay Judul Game */
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(2, 6, 23, 0.95) 10%, transparent 60%);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding-bottom: 24px;
+}
+
+.overlay span {
+  font-weight: 700;
+  font-size: 1.1rem;
+  text-align: center;
+  color: #fff;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
+  transform: translateY(5px);
+  transition: 0.3s;
+}
+
+.game-card:hover .overlay span {
+  transform: translateY(0);
+  color: #e0e7ff;
+}
+
+/* =========================================
+   DETAIL PAGE (HALAMAN TOP UP)
+   ========================================= */
+
+.detail-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding-bottom: 80px;
+  animation: fadeIn 0.5s ease-out;
+}
+
+/* Header Detail */
+.detail-header {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  background: linear-gradient(145deg, rgba(30, 41, 59, 0.6), rgba(15, 23, 42, 0.8));
+  padding: 24px;
+  border-radius: 20px;
+  margin-bottom: 30px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+}
+
+.detail-header img {
+  width: 90px;
+  height: 90px;
+  border-radius: 16px;
+  object-fit: cover;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.game-info h2 {
+  margin: 0 0 8px 0;
+  font-size: 1.8rem;
+  color: white;
+}
+
+.game-info p {
+  color: #a5b4fc;
+  margin: 0;
+  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Section Form Wrapper */
+.form-section {
+  background: rgba(30, 41, 59, 0.4);
+  padding: 24px;
+  border-radius: 20px;
+  margin-bottom: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.label-section {
+  display: block;
+  font-weight: 700;
+  margin-bottom: 16px;
+  font-size: 1.1rem;
+  color: #e2e8f0;
+  border-left: 4px solid var(--primary);
+  padding-left: 12px;
+}
+
+/* Input ID Styling */
+.input-row {
+  display: flex;
+  gap: 16px;
+}
+
+.input-id {
+  width: 100%;
+  padding: 16px;
+  border-radius: 12px;
+  background: #0f172a;
+  border: 2px solid #334155;
+  color: white;
+  font-size: 1rem;
+  outline: none;
+  transition: 0.3s;
+}
+
+.input-id:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.2);
+  background: #1e293b;
+}
+
+/* Grid Nominal Styles */
+.grid-nominal {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  /* Pastikan 2 kolom */
+  gap: 16px;
+}
+
+.nominal-item {
+  background: #1e293b;
+  border: 2px solid transparent;
+  padding: 16px;
+  border-radius: 16px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.nominal-item:hover {
+  background: #334155;
+  transform: translateY(-2px);
+}
+
+.nominal-item.active {
+  background: rgba(99, 102, 241, 0.1);
+  border-color: var(--primary);
+  box-shadow: 0 0 20px rgba(99, 102, 241, 0.2);
+}
+
+.nominal-amount {
+  font-size: 1rem;
+  font-weight: 600;
+  color: white;
+  margin-bottom: 4px;
+}
+
+.nominal-price {
+  font-size: 0.9rem;
+  color: #cbd5e1;
+}
+
+/* Button Buy */
+.btn-buy {
+  width: 100%;
+  padding: 20px;
+  border-radius: 50px;
+  font-weight: 800;
+  font-size: 1.2rem;
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  border: none;
+  color: white;
+  cursor: pointer;
+  margin-top: 20px;
+  box-shadow: 0 10px 30px rgba(99, 102, 241, 0.4);
+  transition: 0.3s;
+  letter-spacing: 1px;
+}
+
+.btn-buy:hover {
+  transform: scale(1.02);
+  filter: brightness(1.1);
+}
+
+/* =========================================
+   FOOTER
+   ========================================= */
+.footer {
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  margin-top: 40px;
+  padding: 30px;
+  text-align: center;
+  color: var(--text-gray);
+  font-size: 0.9rem;
+}
+
+/* =========================================
+   ANIMATIONS
+   ========================================= */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive tweaks */
+@media (max-width: 600px) {
+  .hero h1 {
+    font-size: 2.5rem;
+  }
+
+  .grid-nominal {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .detail-header {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .input-row {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .input-id {
+    width: 100% !important;
+  }
+}
